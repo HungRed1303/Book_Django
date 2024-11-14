@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+from django_24.settings import STATIC_ROOT
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,6 +28,8 @@ SECRET_KEY = 'django-insecure-c_pri3jerapsjesopaa5vzqk#02_7_6y8ae)d$m&n4uz%8q5-l
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+STATIC_ROOT = BASE_DIR/'assets'
 
 STORAGES = {
     # ...
