@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-c_pri3jerapsjesopaa5vzqk#02_7_6y8ae)d$m&n4uz%8q5-l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["book-django-6.onrender.com",'127.0.0.1','localhost']
 
 STATIC_ROOT = BASE_DIR/'template'
 
