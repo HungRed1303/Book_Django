@@ -29,7 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-STATIC_ROOT = BASE_DIR/'assets'
+STATIC_ROOT = BASE_DIR/'template'
 
 STORAGES = {
     # ...
