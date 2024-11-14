@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    .container {
+        margin-left: 0px;
+        margin-right: 10px;
+    }
+
+    h2 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    .book-info p, .review-card p {
+        margin: 5px 0;
+    }
+
+    .label {
+        color: #17a2b8;
+        font-weight: bold;
+    }
+
+    .badge {
+        padding: 3px 7px;
+        border-radius: 10px;
+        font-size: 0.8em;
+    }
+
+    .badge-primary {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .badge-secondary {
+        background-color: #6c757d;
+        color: white;
+    }
+
+    .book-info {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;  /* Chỉ đặt padding trên và dưới */
+    margin-bottom: 10px;
+    }
+
+    .review-card {
+        margin-left: 50px;
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+    }
+</style>
+
+<div class="container">
+    <h2>Book Details</h2>
+
+    <div class="book-info">
+        <p><span class="label">Title:</span> {{ book.title }}</p>
+        <p><span class="label">Publisher:</span> {{ book.publisher }}</p>
+        <p><span class="label">Publication Date:</span> {{ book.publication_date }}</p>
+        <p><span class="label">Overall Rating:</span>
+            <span class="badge badge-primary badge-pill">{{ book_rating|default:"N/A"}}</span>
+        </p>
+    </div>
+
+    <h2>Review Comments</h2>
+
+    {% if reviews %}
+        {% for review in reviews %}
+            <div class="review-card">
+                <p><span class="label">Review comment:</span> {{ review.content }}</p>
+                <p><span class="label">Created on:</span> {{ review.date_created|date:"M. d, Y, g:i a" }}</p>
+                <p><span class="label">Modified on:</span> {{ review.date_edited|date:"M. d, Y, g:i a" }}</p>
+                <p><span class="label">Rating:</span>
+                    <span class="badge badge-secondary">{{ review.rating }}</span>
+                </p>
+                <p><span class="label">Creator:</span> {{ review.creator }}</p>
+                <a href="{% url 'review_edit' book.pk review.pk %}">Edit Review</a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="text-muted">No reviews yet.</p>
+    {% endif %}
+</div>
+<a class="btn btn-primary" href="{% url 'review_create' book.pk %}">Add Review</a>
+{% endblock %}
